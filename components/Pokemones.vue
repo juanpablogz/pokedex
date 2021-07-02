@@ -83,7 +83,7 @@ export default {
 }
 .align-table {
   overflow: auto;
-  height: 50vh;
+  height: 70vh;
 	border: 2px solid #dce4ec;
   border-radius: 5px;
 	border: none;

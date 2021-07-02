@@ -18,6 +18,7 @@ export default {
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
+	height: 10vh;
 }
 .align-buttons {
 	display: flex;
