@@ -81,5 +81,8 @@ input {
 			left: 10px;
 			top: -42px;
 	}
+	.container {
+		margin-bottom: 0px;
+	}
  }
 </style>
