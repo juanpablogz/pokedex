@@ -17,9 +17,9 @@
 export default {
 	data () {
 		return {
-			pokemon: '',
+			pokemon: ''
 		}
-	}
+	},
 }
 </script>
 
