@@ -34,8 +34,9 @@ export default {
         .then(response => (this.$store.commit("pokemon/updateError", false), this.$store.commit("pokemon/updateFind", response.data)))
         .catch (err => console.log(err), this.$store.commit("pokemon/updateError", true))
 		},
-		sendError() {
-		}
+    back () {
+      this.$store.commit("pokemon/updateError", false)
+    }
 	},
 }
 </script>

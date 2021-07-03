@@ -2,6 +2,6 @@
 @import './generic/style.css';
 @import './components/table.css';
 @import './components/modal.css';
-@import './components/navigator.css';
 @import './components/search.css';
 @import './mediaquery/media.css';
+@import './components/navigator.css';
