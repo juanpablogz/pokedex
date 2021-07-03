@@ -26,6 +26,12 @@
   width: 300px;
   height: 479px;
 }
+.share {
+  margin-top: 12px;
+}
+.star-share {
+  margin-top: 10px;
+}
 }
 @media (min-width: 576px) {
 }
@@ -74,5 +80,8 @@
 .modal-vue .modal {
   width: 570px;
   height: 506px;
+}
+.share {
+  margin-top: 30px;
 }
 }
