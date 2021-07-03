@@ -4,6 +4,7 @@
       <button class="button" @click="updateButttonFavorites(true)">
         <img class="icon-align" src="./../assets/img/all.png" alt="" />
         All
+				{{button}}
       </button>
       <button class="button favorites" @click="updateButttonFavorites(false)">
 				<img class="icon-align" src="./../assets/img/favorite.png" alt="">

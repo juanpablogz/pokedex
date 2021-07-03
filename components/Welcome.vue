@@ -26,7 +26,7 @@ export default {
   mounted () {
   let favorites = JSON.parse(localStorage.getItem('favorites'));
   if (favorites == null) {
-    this.$store.commit("pokemon/updateListFavorites", -1)
+    localStorage.setItem('favorites',JSON.stringify([99]))
   }
   }
 }

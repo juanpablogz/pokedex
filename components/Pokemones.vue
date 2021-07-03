@@ -9,7 +9,7 @@
     </transition>
 
   <Modal v-show="modal"/>
-		<div  class="align-table" id="infinite-list" v-if="button" >
+		<div  class="align-table" id="infinite-list" v-if="button != true" >
 			<div v-for="(pokemon, index) in findPokemon" v-bind:key="pokemon.id" class="list-group-item">
 				<div class="align-pokemones">
 					<p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
@@ -17,7 +17,7 @@
 				</div>
 			</div>
 		</div>
-		<div  class="align-table" id="infinite-list" v-if="button != true" >
+		<div  class="align-table" id="infinite-list" v-if="button" >
 			<div v-for="(pokemon, index) in findPokemon" v-bind:key="pokemon.id" class="list-group-item">
 				<div class="align-pokemones" v-bind:class="[favorites.indexOf(index+1) == -1 ? 'filter': '']" >
 					<p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
@@ -76,9 +76,6 @@ export default {
       .then(response => (this.pokemones = response.data.results,
       this.$store.commit("pokemon/updateFind", response.data.results)))
     },
-    getFavorite () {
-
-    },
 		getInfo(index) {
 			console.log(index)
       this.details = index
@@ -95,6 +92,6 @@ export default {
 
 <style>
 .filter {
-  display: none
+  display: none;
 }
 </style>
