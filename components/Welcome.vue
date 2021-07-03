@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div >
    <div class="align-index">
       <img src="./../assets/img/pikachu.png" alt="">
    </div>
@@ -28,12 +28,6 @@ export default {
 
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
-body {
-  /* font-family: 'Lato', sans-serif; */
-  background: #E5E5E5;
-  box-sizing: content-box;
-}
 .align-index {
   display: flex;
   justify-content: center;
