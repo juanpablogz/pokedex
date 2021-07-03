@@ -1,19 +1,21 @@
+
 <template>
 <div id="app" class="modal-vue">
 
   <div class="overlay" v-if="modal" @click="changeModal(false)"></div>
+	<!-- {{modal}} -->
   <div class="modal" v-if="modal">
     <div class="close" @click="changeModal(false)">
 			<img src="./../assets/img/close.png" alt="">
-	</div>
-			<img src="./../assets/img/back.png" alt="" class="back">
-
+		</div>
+    <img src="./../assets/img/back.png" alt="" class="back">
 		<div class="container-pokemon">
 			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" alt="" class="pokemon">
 		</div>
-
+		<!-- {{pokemones}} -->
 		<div class="characters">
 			<p class="border"><strong>Name: </strong>{{pokemon.name}}</p>
+						<!-- {{pokemon.id}} -->
 			<p class="border"><strong>Weight: </strong>{{pokemon.weight}}</p>
 			<p class="border"><strong>height: </strong>{{pokemon.height}}</p>
 			<div style="display: flex">
@@ -22,7 +24,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="container-share">
       <button class="button share" @click="copy()">Share to my friends</button>
 			<img class="star star-share" src="./../assets/img/star.png" alt="">
@@ -38,13 +39,12 @@ export default {
 	  mixins: [utils],  
 	data () {
 		return {
-			showModal: true,
-			favorites: []
+			showModal: true
 		}
 	},
 	methods: {
 		async copy() {
-			let copy = `Name: ${this.pokemon.name}, weight: ${this.pokemon.weight}, height: ${this.pokemon.height}`
+			let copy = `${this.pokemon.name}, ${this.pokemon.weight}, ${this.pokemon.height}`
 				try {
 						await this.$copyText(copy);
 						this.$swal({
@@ -54,19 +54,10 @@ export default {
 							showConfirmButton: false,
 							timer: 1500
 						})
-
 				} catch (e) {
 						console.error(e);
 				}
 		},
-	},
-  mounted () {
-    this.favorites = JSON.parse(localStorage.getItem('favorites'));
-  },
-  methods: {
-    add (index) {
-      this.favorites = JSON.parse(localStorage.getItem('favorites'));
-    },
 	},
   computed: {
     pokemon() {
@@ -92,5 +83,9 @@ export default {
 .share {
 	margin-bottom:0px;
 	margin-left: 20px;
+}
+.star-share {
+	margin-right: 20px;
+	margin-top: 20px
 }
 </style>
