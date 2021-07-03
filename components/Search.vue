@@ -30,13 +30,10 @@ export default {
 		getPokemon () {
 		this.changeState(true)
       this.$axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch}`)
+        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch.toLowerCase()}`)
         .then(response => (this.$store.commit("pokemon/updateError", false), this.$store.commit("pokemon/updateFind", response.data)))
         .catch (err => console.log(err), this.$store.commit("pokemon/updateError", true))
 		},
-    back () {
-      this.$store.commit("pokemon/updateError", false)
-    }
 	},
 }
 </script>
