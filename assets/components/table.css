@@ -51,9 +51,15 @@
   left: calc(50% - 45px);
   top: calc(50% - 18px);
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+#loading {
+  -webkit-animation: rotation 2s infinite linear;
 }
-.fade-enter, .fade-leave-to {
-  opacity: 0
+
+@-webkit-keyframes rotation {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(359deg);
+  }
 }

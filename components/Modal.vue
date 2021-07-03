@@ -84,8 +84,4 @@ export default {
 	margin-bottom:0px;
 	margin-left: 20px;
 }
-.star-share {
-	margin-right: 20px;
-	margin-top: 20px
-}
 </style>

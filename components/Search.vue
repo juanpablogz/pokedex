@@ -8,6 +8,9 @@
 			</i>
 		</div>
 	</div>
+		<!-- <div class="error">
+			<button class="button">Go back home</button>
+		</div> -->
 		<Error v-show="error"/>
 </div>
 </template>
@@ -20,7 +23,7 @@ export default {
 		return {
 			pokemonSearch: '',
 			pokemones: '',
-			error: false
+			errorSearch: false
 		}
 	},
 	methods: {
@@ -28,9 +31,11 @@ export default {
 		this.changeState(true)
       this.$axios
         .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch}`)
-        .then(response => (this.error = false, this.$store.commit("pokemon/updateFind", response.data, console.log(response.data))))
-        .catch (err => console.log(err), this.error = true)
+        .then(response => (this.$store.commit("pokemon/updateError", false), this.$store.commit("pokemon/updateFind", response.data)))
+        .catch (err => console.log(err), this.$store.commit("pokemon/updateError", true))
 		},
+		sendError() {
+		}
 	},
 }
 </script>

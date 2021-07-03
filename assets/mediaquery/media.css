@@ -5,33 +5,37 @@
   }
   .button {
     margin-top: 30px;
-	}
-	input {
-		width: 315px;
-		height: 50px;
-		margin-top: 35px;
-}
-.container {
-	margin-bottom: 50px;
-}
-.align-pokemones {
-	width: 300px
-}
-.back {
-  width: inherit;
-  position: absolute;
-  height: 200px;
-}
-.modal-vue .modal {
-  width: 300px;
-  height: 479px;
-}
-.share {
-  margin-top: 12px;
-}
-.star-share {
-  margin-top: 10px;
-}
+  }
+  input {
+    width: 315px;
+    height: 50px;
+    margin-top: 35px;
+  }
+  .container {
+    margin-bottom: 50px;
+  }
+  .align-pokemones {
+    width: 300px;
+  }
+  .back {
+    width: inherit;
+    position: absolute;
+    height: 200px;
+  }
+  .modal-vue .modal {
+    width: 300px;
+    height: 479px;
+  }
+  .share {
+    margin-top: 12px;
+  }
+  .image-loading {
+    max-width: 40px;
+  }
+  .star-share {
+    margin-right: 20px;
+    margin-top: 10px;
+  }
 }
 @media (min-width: 576px) {
 }
@@ -44,8 +48,8 @@
 
 @media (min-width: 1200px) {
   .container {
-		padding: 50px 0px;
-		margin-bottom: 0px;
+    padding: 50px 0px;
+    margin-bottom: 0px;
   }
   .title {
     margin-top: 50px;
@@ -57,31 +61,38 @@
     color: #948181;
     max-width: 500px;
     text-align: center;
-	}
-	input {
-		width: 570px;
-		height: 50px;
-		margin-top: 35px;
-}
-.search {
-		position: relative;
-		left: 10px;
-		top: -42px;
-}
-.align-pokemones {
-  width: 570px;
-  height: 60px;
-}
-.back {
-  width: inherit;
-  position: absolute;
-  height: 200px;
-}
-.modal-vue .modal {
-  width: 570px;
-  height: 506px;
-}
-.share {
-  margin-top: 30px;
-}
+  }
+  input {
+    width: 570px;
+    height: 50px;
+    margin-top: 35px;
+  }
+  .search {
+    position: relative;
+    left: 10px;
+    top: -42px;
+  }
+  .align-pokemones {
+    width: 570px;
+    height: 60px;
+  }
+  .back {
+    width: inherit;
+    position: absolute;
+    height: 200px;
+  }
+  .modal-vue .modal {
+    width: 570px;
+    height: 506px;
+  }
+  .share {
+    margin-top: 30px;
+  }
+  .image-loading {
+    max-width: 150px;
+  }
+  .star-share {
+    margin-right: 20px;
+    margin-top: 20px;
+  }
 }

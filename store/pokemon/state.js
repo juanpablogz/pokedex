@@ -7,5 +7,6 @@ export default function () {
 			listFavorites: {},
 			pokemon: [],
 			enter: false,
+			error: false,
     }
 }

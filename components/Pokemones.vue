@@ -3,13 +3,13 @@
 <div class="container-table">
   <div class="list-group-wrapper">
     <transition name="fade">
-      <div class="loading" v-show="loading">
-        <img src="./../assets/img/loader.png" alt="" style="max-width: 30px">
+      <div id="loading" class="loading" v-show="loading">
+        <img class="image-loading" src="./../assets/img/loader.png" alt="" >
       </div>
     </transition>
 
   <Modal v-show="modal"/>
-		<div  class="align-table" id="infinite-list" v-if="button != true" >
+		<div  class="align-table" id="infinite-list" v-if="button != true && error == false" >
 			<div v-for="(pokemon, index) in findPokemon" v-bind:key="pokemon.id" class="list-group-item">
 				<div class="align-pokemones" v-show="pokemon.name != null">
 					<p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
@@ -17,7 +17,7 @@
 				</div>
 			</div>
 		</div>
-		<div  class="align-table" id="infinite-list" v-if="button" >
+		<div  class="align-table" id="infinite-list" v-if="button && error == false" >
 			<div v-for="(pokemon, index) in findPokemon" v-bind:key="pokemon.id" class="list-group-item">
 				<div class="align-pokemones" v-bind:class="[favorites.indexOf(index+1) == -1 ? 'filter': '']" >
 					<p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
@@ -68,7 +68,7 @@ export default {
         console.log(this.limit)
         this.loading = false;
         this.getPokemon()
-      }, 200);
+      }, 300);
   },
 		getPokemon () {
     this.$axios
@@ -82,8 +82,8 @@ export default {
       this.changeModal(true)
       this.$axios
         .get(`https://pokeapi.co/api/v2/pokemon/${index+1}`)
-        .then(response => (this.error = false, this.$store.commit("pokemon/updatePokemon", response.data)))
-        .catch (err => console.log(err), this.error = true)
+        .then(response => (this.$store.commit("pokemon/updatePokemon", response.data)))
+        .catch (err => console.log(err))
 		}
 	},
 

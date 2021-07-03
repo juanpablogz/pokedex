@@ -15,9 +15,6 @@ export default {
     updatePokemones (val) {
       this.$store.commit("pokemon/updatePokemones", val);
     },
-    changeState (val) {
-      this.$store.commit("pokemon/butttonFavorites", val);
-    },
     updateButttonFavorites (val) {
       this.$store.commit("pokemon/updateButttonFavorites", val);
     },
@@ -26,6 +23,9 @@ export default {
     },
     updateEnter (val) {
       this.$store.commit("pokemon/updateEnter", val);
+    },
+    updateError (val) {
+      this.$store.commit("pokemon/updateError", val);
     },
 	},
   computed: {
@@ -46,6 +46,9 @@ export default {
     },
     enter() {
       return this.$store.state.pokemon.enter;
+    },
+    error() {
+      return this.$store.state.pokemon.error;
     },
   },
 }
