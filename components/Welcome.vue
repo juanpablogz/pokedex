@@ -22,6 +22,12 @@ export default {
       paragraph: 'The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.',
       go: 'Get Started'
     }
+  },
+  mounted () {
+  let favorites = JSON.parse(localStorage.getItem('favorites'));
+  if (favorites == null) {
+    this.$store.commit("pokemon/updateListFavorites", -1)
+  }
   }
 }
 </script>

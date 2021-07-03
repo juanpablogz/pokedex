@@ -1,51 +1,55 @@
 <template>
 <div id="app" class="modal-vue">
-  
-  <button @click="showModal = true">Testing modal</button>
-  
-  <div class="overlay" v-if="showModal" @click="showModal = false"></div>
-  
-  <div class="modal" v-if="showModal">
-    <div class="close" @click="showModal = false">
+
+  <div class="overlay" v-if="modal" @click="changeModal(false)"></div>
+	{{modal}}
+  <div class="modal" v-if="modal">
+    <div class="close" @click="changeModal(false)">
 			<img src="./../assets/img/close.png" alt="">
 		</div>
     <img src="./../assets/img/back.png" alt="" class="back">
 		<div class="container-pokemon">
-			<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png" alt="" class="pokemon">
+			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" alt="" class="pokemon">
 		</div>
 		<!-- {{pokemones}} -->
-
+		<div class="characters">
+			<p class="border"><strong>Name: </strong>{{pokemon.name}}</p>
+						{{pokemon.id}}
+			<p class="border"><strong>Weight: </strong>{{pokemon.weight}}</p>
+			<p class="border"><strong>height: </strong>{{pokemon.height}}</p>
+			<!-- <div v-for="type in pokemon.types" v-bind:key="type.id">
+				{{type.type.name}}
+			</div> -->
+		</div>
   </div>
   
 </div>
 </template>
 
 <script>
+import utils from '@/mixins/utils'
 export default {
+	  mixins: [utils],  
 	data () {
 		return {
-			showModal: false,
-			pokemones: [],
-			characters: {
-				name: '',
-				height: '',
-				width: '',
-				types: []
-			}
+			showModal: true
 		}
 	},
-  mounted () {
-		this.getPokemon()
-	},
-	methods: {
-		getPokemon () {
-    this.$axios
-      .get(`https://pokeapi.co/api/v2/pokemon/7`)
-			.then(response => (this.pokemones = response))
+  computed: {
+    pokemon() {
+	  return this.$store.state.pokemon.findPokemon;
 		},
-		change (val) {
-      this.$store.commit("products/updatePorn", val);
-		}
-	},
+  },
 }
 </script>
+<style>
+.characters {
+	margin-top: 220px;
+	padding-left: 30px;
+	margin-bottom: 10px;
+}
+.border {
+	border-bottom: 1px solid #E8E8E8;
+	padding-bottom: 20px;
+}
+</style>

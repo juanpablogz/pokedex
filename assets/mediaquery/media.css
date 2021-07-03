@@ -17,6 +17,15 @@
 .align-pokemones {
 	width: 300px
 }
+.back {
+  width: inherit;
+  position: absolute;
+  height: 200px;
+}
+.modal-vue .modal {
+  width: 300px;
+  height: 479px;
+}
 }
 @media (min-width: 576px) {
 }
@@ -54,6 +63,16 @@
 		top: -42px;
 }
 .align-pokemones {
-	width: 570px;
+  width: 570px;
+  height: 60px;
+}
+.back {
+  width: inherit;
+  position: absolute;
+  height: 200px;
+}
+.modal-vue .modal {
+  width: 570px;
+  height: 506px;
 }
 }

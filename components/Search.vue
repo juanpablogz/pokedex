@@ -27,11 +27,11 @@ export default {
 	methods: {
 		getPokemon () {
 		this.changeState(true)
-    this.$axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemon}`)
-			.then(response => (this.pokemones = response.data, console.log(this.pokemones), this.error = false))
-			.catch (err => console.log(err), this.error = true)
+      this.$axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemon}`)
+        .then(response => (this.error = false, this.$store.commit("pokemon/updateFind", response.data, console.log(response.data))))
+        .catch (err => console.log(err), this.error = true)
 		},
-	}
+	},
 }
 </script>

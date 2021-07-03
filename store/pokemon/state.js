@@ -1,8 +1,9 @@
 export default function () {
     return {
-			x: 'x',
 			isSearch: false,
-			favorites: false,
-			pokemones: []
+			butttonFavorites: false,
+			modal: false,
+			findPokemon: [],
+			listFavorites: {}
     }
 }

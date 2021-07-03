@@ -1,7 +1,6 @@
 <template>
 <div>
 	<Search/>
-	<Modal/>
 	<Pokemones/>
 	<Navigator/>
 </div>
