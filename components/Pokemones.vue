@@ -11,7 +11,7 @@
   <Modal v-show="modal"/>
 		<div  class="align-table" id="infinite-list" v-if="button != true" >
 			<div v-for="(pokemon, index) in findPokemon" v-bind:key="pokemon.id" class="list-group-item">
-				<div class="align-pokemones">
+				<div class="align-pokemones" v-show="pokemon.name != null">
 					<p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
           <div v-bind:class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
 				</div>

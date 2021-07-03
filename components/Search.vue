@@ -23,7 +23,6 @@ export default {
 			error: false
 		}
 	},
-
 	methods: {
 		getPokemon () {
 		this.changeState(true)

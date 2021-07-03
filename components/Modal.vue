@@ -43,9 +43,17 @@ export default {
 	},
 	methods: {
 		async copy() {
-			let copy = `${this.pokemon.name}, ${this.pokemon.weight}, ${this.pokemon.height}`
+			let copy = `Name: ${this.pokemon.name}, weight: ${this.pokemon.weight}, height: ${this.pokemon.height}`
 				try {
 						await this.$copyText(copy);
+						this.$Swal.fire({
+							position: 'top-end',
+							icon: 'success',
+							title: 'Your work has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						})
+
 				} catch (e) {
 						console.error(e);
 				}
