@@ -8,7 +8,7 @@
       </div>
     </transition>
 		
-		<div  class="align-table" id="infinite-list">
+		<div  class="align-table" id="infinite-list" v-show="search == false">
 			<div v-for="(pokemon, index) in pokemones" v-bind:key="pokemon.id" class="list-group-item">
 				<div class="align-pokemones" @click="getInfo(index)">
 					<p class="min">{{pokemon.name}}</p>
@@ -16,7 +16,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- {{pokemones[details]}} -->
   </div>
   
 </div>
@@ -25,16 +24,16 @@
 </template>
 
 <script>
+import utils from '@/mixins/utils'
 export default {
+  mixins: [utils],
 	data () {
 		return {
     loading: false,
     nextItem: 1,
 		items: [],
 		pokemones: [],
-		limit: 0,
-		next: 'https://pokeapi.co/api/v2/ability/?limit=20',
-		details: 0
+		limit: 0
 		}
 	},
   mounted () {
@@ -44,26 +43,22 @@ export default {
         this.loadMore();
       }
     });
-
-    // Initially load some items.
     this.loadMore();
-	},
+  },
   methods: {
-    	 loadMore () {
-      
+    loadMore () {
       this.loading = true;
       setTimeout(e => {
-				this.limit = this.limit + 20
-				console.log(this.limit)
-				this.loading = false;
-				this.getPokemon()
+        this.limit = this.limit + 100
+        console.log(this.limit)
+        this.loading = false;
+        this.getPokemon()
       }, 200);
-      
-		},
+  },
 		getPokemon () {
     this.$axios
-      .get(`https://pokeapi.co/api/v2/ability/?limit=${this.limit}`)
-			.then(response => (this.pokemones = response.data.results, this.next = response.data.next))
+      .get(`https://pokeapi.co/api/v2/pokemon/?limit=${this.limit}`)
+			.then(response => (this.pokemones = response.data.results))
 		},
 		getInfo(index) {
 			console.log(index)
@@ -73,67 +68,3 @@ export default {
 
 }
 </script>
-
-<style>
-.container-table {
-	display: flex;
-	flex-direction: column;
-	align-items: center;	
-	/* border:solid red; */
-}
-.align-table {
-  overflow: auto;
-  height: 70vh;
-	border: 2px solid #dce4ec;
-  border-radius: 5px;
-	border: none;
-}
-.align-pokemones {
-  display: flex;
-  justify-content: center;
-  display: flex;
-  justify-content: space-between;
-	background: #FFFFFF;
-	width: 570px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-	padding: 0px 30px;
-	cursor: pointer;
-}
-.min {
-  min-width: 200px;
-}
-.loading {
-  text-align: center;
-  position: absolute;
-  color: #fff;
-  z-index: 9;
-  /* background: purple; */
-  padding: 8px 18px;
-  border-radius: 5px;
-  left: calc(50% - 45px);
-  top: calc(50% - 18px);
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0
-}
-@media (min-width: 360px) { 
-  .align-pokemones {
-    width: 300px
-  }
- }
-@media (min-width: 576px) { }
-
-@media (min-width: 768px) {  }
-
-@media (min-width: 992px) {  }
-
-@media (min-width: 1200px) { 
-  .align-pokemones {
-    width: 570px;
-  }
- }
-</style>

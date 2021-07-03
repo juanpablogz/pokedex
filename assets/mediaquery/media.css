@@ -1,0 +1,59 @@
+@media (min-width: 360px) {
+  .pr {
+    max-width: 300px;
+    font-size: 18px;
+  }
+  .button {
+    margin-top: 30px;
+	}
+	input {
+		width: 315px;
+		height: 50px;
+		margin-top: 35px;
+}
+.container {
+	margin-bottom: 50px;
+}
+.align-pokemones {
+	width: 300px
+}
+}
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+  .container {
+		padding: 50px 0px;
+		margin-bottom: 0px;
+  }
+  .title {
+    margin-top: 50px;
+  }
+  .button {
+    margin-top: 50px;
+  }
+  .pr {
+    color: #948181;
+    max-width: 500px;
+    text-align: center;
+	}
+	input {
+		width: 570px;
+		height: 50px;
+		margin-top: 35px;
+}
+.search {
+		position: relative;
+		left: 10px;
+		top: -42px;
+}
+.align-pokemones {
+	width: 570px;
+}
+}
