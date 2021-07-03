@@ -13,6 +13,9 @@ export const updateModal = (state, opened) => {
 export const updatePokemon = (state, opened) => {
   state.pokemon = opened
 }
+export const updateEnter = (state, opened) => {
+  state.enter = opened
+}
 export const updateListFavorites = (state, opened) => {
   Array.prototype.unique=function(a){
     return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0

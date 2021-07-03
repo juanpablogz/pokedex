@@ -5,6 +5,7 @@ export default function () {
 			modal: false,
 			findPokemon: [],
 			listFavorites: {},
-			pokemon: []
+			pokemon: [],
+			enter: false,
     }
 }

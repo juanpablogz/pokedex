@@ -8,9 +8,7 @@
         <p class="pr">{{paragraph}}</p>
       </div>
       <div class="align-index">
-        <NuxtLink to="/pokedex" class="delete-decorator">
-          <button class="align-index button">{{go}}</button>
-        </NuxtLink>
+          <button class="align-index button" @click="goToApp">{{go}}</button>
       </div>
   </div>
 </template>
@@ -23,7 +21,13 @@ export default {
       go: 'Get Started'
     }
   },
+  methods: {
+    goToApp () {
+      this.$store.commit("pokemon/updateEnter", true);
+    }
+  },
   mounted () {
+  this.$store.commit("pokemon/updateEnter", false);
   let favorites = JSON.parse(localStorage.getItem('favorites'));
   if (favorites == null) {
     localStorage.setItem('favorites',JSON.stringify([99]))

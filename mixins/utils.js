@@ -24,6 +24,9 @@ export default {
     updatePokemon (val) {
       this.$store.commit("pokemon/updatePokemon", val);
     },
+    updateEnter (val) {
+      this.$store.commit("pokemon/updateEnter", val);
+    },
 	},
   computed: {
     search() {
@@ -40,6 +43,9 @@ export default {
     },
     pokemon() {
       return this.$store.state.pokemon.pokemon;
-		},
+    },
+    enter() {
+      return this.$store.state.pokemon.enter;
+    },
   },
 }
