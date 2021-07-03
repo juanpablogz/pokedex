@@ -1,11 +1,11 @@
 <template>
 <div>
-	<Welcome v-if="enter == false" />
 	<div v-if="enter" >
 		<Search/>
 		<Pokemones/>
 		<Navigator/>
-	</div>
+	</div>	
+	<Welcome v-else/>
 </div>
 </template>
 
