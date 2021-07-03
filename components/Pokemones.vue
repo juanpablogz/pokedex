@@ -82,7 +82,7 @@ export default {
       this.changeModal(true)
       this.$axios
         .get(`https://pokeapi.co/api/v2/pokemon/${index+1}`)
-        .then(response => (this.error = false, this.$store.commit("pokemon/updateFind", response.data)))
+        .then(response => (this.error = false, this.$store.commit("pokemon/updatePokemon", response.data)))
         .catch (err => console.log(err), this.error = true)
 		}
 	},

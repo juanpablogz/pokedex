@@ -46,7 +46,7 @@ export default {
 			let copy = `Name: ${this.pokemon.name}, weight: ${this.pokemon.weight}, height: ${this.pokemon.height}`
 				try {
 						await this.$copyText(copy);
-						this.$Swal.fire({
+						this.$swal({
 							position: 'top-end',
 							icon: 'success',
 							title: 'Your work has been saved',
@@ -61,7 +61,7 @@ export default {
 	},
   computed: {
     pokemon() {
-	  return this.$store.state.pokemon.findPokemon;
+	  return this.$store.state.pokemon.pokemon;
 		},
   },
 }

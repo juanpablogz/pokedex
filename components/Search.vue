@@ -2,7 +2,7 @@
 <div>
 	<div class="container">
 		<div>
-			<input type="text" placeholder="Search" v-model="pokemon"  @keyup.enter="getPokemon()">
+			<input type="text" placeholder="Search" v-model="pokemonSearch"  @keyup.enter="getPokemon()">
 			<i class="search">
 				<img src="./../assets/img/search.png" alt="">
 			</i>
@@ -18,7 +18,7 @@ export default {
   mixins: [utils],
 	data () {
 		return {
-			pokemon: '',
+			pokemonSearch: '',
 			pokemones: '',
 			error: false
 		}
@@ -27,7 +27,7 @@ export default {
 		getPokemon () {
 		this.changeState(true)
       this.$axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemon}`)
+        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch}`)
         .then(response => (this.error = false, this.$store.commit("pokemon/updateFind", response.data, console.log(response.data))))
         .catch (err => console.log(err), this.error = true)
 		},

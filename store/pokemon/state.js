@@ -4,6 +4,7 @@ export default function () {
 			butttonFavorites: false,
 			modal: false,
 			findPokemon: [],
-			listFavorites: {}
+			listFavorites: {},
+			pokemon: []
     }
 }

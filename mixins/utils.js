@@ -21,6 +21,9 @@ export default {
     updateButttonFavorites (val) {
       this.$store.commit("pokemon/updateButttonFavorites", val);
     },
+    updatePokemon (val) {
+      this.$store.commit("pokemon/updatePokemon", val);
+    },
 	},
   computed: {
     search() {
@@ -34,6 +37,9 @@ export default {
     },
     button() {
       return this.$store.state.pokemon.butttonFavorites;
+    },
+    pokemon() {
+      return this.$store.state.pokemon.pokemon;
 		},
   },
 }
