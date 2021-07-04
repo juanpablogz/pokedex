@@ -24,13 +24,16 @@ export default {
 	},
 	methods: {
     ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites', 'setSearch']),
-		async getPokemon () {
+		async getPokemon() {
+      this.setSearch(true)
       const request = await this.$axios.get(`${this.pokemonSearch}`)
-			if (request.status == 200) this.setPokemons(request.data)
-    },
+      console.log(request)
+			if (request.status == 200) this.setPokemon(request.data)
+			console.log(this.pokemonOne)
+		}
 	},
   computed: {
-    ...mapGetters(['pokemons', 'pokemonOne', 'error'])
+    ...mapGetters(['pokemons', 'pokemonOne', 'error', 'search'])
   },
 }
 </script>

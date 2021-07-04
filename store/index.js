@@ -62,7 +62,7 @@ export const getters = {
     return state.modal
   },
   search (state) {
-    return state.search
+    return state.isSearch
   },
   error (state) {
     return state.error

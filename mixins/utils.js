@@ -17,21 +17,9 @@ export default {
     },
 	},
   computed: {
-    // search() {
-    //   return this.$store.state.isSearch;
-		// },
-    // modal() {
-    //   return this.$store.state.modal;
-    // },
-    // findPokemon() {
-    //   return this.$store.state.pokemons;
-    // },
     button() {
       return this.$store.state.butttonFavorites;
     },
-    // pokemon() {
-    //   return this.$store.state.pokemon;
-    // },
     enter() {
       return this.$store.state.enter;
     },
