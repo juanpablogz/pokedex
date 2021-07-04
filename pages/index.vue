@@ -1,5 +1,5 @@
 <template>
-<div>
+<div >
 	<div v-if="goToApp" >
 		<Search/>
 		<Pokemons/>

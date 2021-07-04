@@ -38,7 +38,7 @@ export default {
   justify-content: center;
   cursor: pointer;
   margin-right: 15px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .current {
 	background: #f22539;

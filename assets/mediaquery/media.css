@@ -1,21 +1,16 @@
-@media (min-width: 360px) {
+@media (min-width: 280px) {
   .pr {
     max-width: 300px;
     font-size: 18px;
   }
   .button {
-    margin-top: 30px;
-  }
-  input {
-    width: 315px;
-    height: 50px;
-    margin-top: 35px;
+    margin-top: 10px;
   }
   .container {
     margin-bottom: 50px;
   }
   .align-pokemones {
-    width: 300px;
+    width: 200px;
   }
   .back {
     width: inherit;
@@ -23,7 +18,7 @@
     height: 200px;
   }
   .modal-vue .modal {
-    width: 300px;
+    width: 275px;
     height: 479px;
   }
   .share {
@@ -37,28 +32,47 @@
     margin-top: 7px;
   }
   input {
-    width: 315px;
+    width: 230px;
     height: 50px;
     margin-top: 35px;
   }
   .container {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
   .align-star-modal {
     margin-right: 17px;
     margin-top: 8px;
   }
 }
-@media (min-width: 576px) {
+@media (min-width: 320px) {
+  .align-pokemones {
+    width: 245px;
+  }
+  .modal-vue .modal {
+    width: 300px;
+    height: 479px;
+  }
+  input {
+    width: 260px;
+    height: 50px;
+    margin-top: 35px;
+  }
 }
-
-@media (min-width: 768px) {
+@media (min-width: 360px) {
+  .align-pokemones {
+    width: 270px;
+  }
+  .modal-vue .modal {
+    width: 300px;
+    height: 479px;
+  }
+  input {
+    width: 290px;
+    height: 50px;
+    margin-top: 35px;
+  }
 }
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
   .container {
     padding: 50px 0px;
     margin-bottom: 0px;
@@ -74,11 +88,6 @@
     max-width: 500px;
     text-align: center;
   }
-  input {
-    width: 570px;
-    height: 50px;
-    margin-top: 35px;
-  }
   .search {
     position: relative;
     left: 10px;
@@ -87,11 +96,6 @@
   .align-pokemones {
     width: 570px;
     height: 60px;
-  }
-  .back {
-    width: inherit;
-    position: absolute;
-    height: 200px;
   }
   .modal-vue .modal {
     width: 570px;
@@ -108,7 +112,7 @@
     margin-top: 20px;
   }
   input {
-    width: 570px;
+    width: 590px;
     height: 50px;
     margin-top: 35px;
   }
@@ -123,5 +127,11 @@
   .align-star-modal {
     margin-right: 30px;
     margin-top: 20px;
+  }
+  .button {
+    margin-top: 20px !important;
+  }
+  .align-table {
+    height: 65vh;
   }
 }
