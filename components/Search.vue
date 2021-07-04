@@ -23,22 +23,11 @@ export default {
 		}
 	},
 	methods: {
-		...mapMutations(['setSearch', 'setError', 'setPokemons']),
-		 getPokemon () {
-		this.setSearch(true)
-      this.$axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch.toLowerCase()}`)
-        .then(response => ( this.$store.commit("setPokemons", response.data)))
-				.catch (err => console.log(err))
-				
-      // const request = await this.$axios.get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch.toLowerCase()}`)
-      // if (request.status == 200) {
-			// 	this.setPokemons(request.data.results)
-			// 	this.setError(false)
-			// } else {
-			// 	this.setError(true)
-			// }
-		},
+    ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites', 'setSearch']),
+		async getPokemon () {
+      const request = await this.$axios.get(`${this.pokemonSearch}`)
+			if (request.status == 200) this.setPokemons(request.data)
+    },
 	},
   computed: {
     ...mapGetters(['pokemons', 'pokemonOne', 'error'])

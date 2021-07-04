@@ -2,7 +2,7 @@
 <div>
 	<div v-if="enter" >
 		<Search/>
-		<Pokemones/>
+		<Pokemons/>
 		<Navigator/>
 	</div>	
 	<Welcome v-else/>

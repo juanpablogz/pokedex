@@ -20,9 +20,9 @@ export default {
     // search() {
     //   return this.$store.state.isSearch;
 		// },
-    modal() {
-      return this.$store.state.modal;
-    },
+    // modal() {
+    //   return this.$store.state.modal;
+    // },
     // findPokemon() {
     //   return this.$store.state.pokemons;
     // },

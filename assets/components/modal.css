@@ -38,3 +38,24 @@
       width: inherit; 
       position: absolute
   }
+  .characters {
+    margin-top: 220px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+  }
+  .border {
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 20px;
+  }
+  .container-share {
+    display: flex;
+    justify-content: space-between;
+  }
+  .share {
+    margin-bottom:0px;
+    margin-left: 20px;
+  }
+  .star-share {
+    margin-right: 20px;
+    margin-top: 20px
+  }

@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Modal v-show="modal" style=""/>
 <div class="container-table">
   <div class="list-group-wrapper">
     <transition name="fade">
@@ -7,18 +8,17 @@
         <img class="image-loading" src="./../assets/img/loader.png" alt="" >
       </div>
     </transition>
-  <Modal v-show="modal"/>
-  <div  class="align-table" id="infinite-list" v-if="navigation != true && error == false" >
+  <div  class="align-table" id="infinite-list" v-if="navigation != true" >
     <div v-for="(pokemon, index) in pokemons" v-bind:key="pokemon.id" class="list-group-item">
       <div class="align-pokemones" v-show="pokemon.name != null">
         <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
-        <div v-bind:class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+        <div :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
       </div>
     </div>
   </div>
-  <div  class="align-table" id="infinite-list" v-if="navigation && error == false" >
+  <div  class="align-table" id="infinite-list" v-if="navigation" >
     <div v-for="(pokemon, index) in pokemons" v-bind:key="pokemon.id" class="list-group-item">
-      <div class="align-pokemones" v-bind:class="[favorites.indexOf(index+1) == -1 ? 'filter': '']" >
+      <div class="align-pokemones" :class="[favorites.indexOf(index+1) == -1 ? 'filter': '']" >
         <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
         <div v-bind:class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
       </div>
@@ -32,19 +32,14 @@
 </template>
 
 <script>
-import utils from '@/mixins/utils'
 import { mapGetters, mapMutations } from 'vuex';
 export default {
-  mixins: [utils],
   computed: {
-    ...mapGetters(['pokemons', 'pokemonOne', 'navigation'])
+    ...mapGetters(['pokemons', 'pokemonOne', 'navigation', 'modal'])
   },
 	data () {
 		return {
     loading: false,
-    nextItem: 1,
-		items: [],
-		pokemones: [],
     limit: 0,
     favorites: [0]
 		}
@@ -60,11 +55,11 @@ export default {
     this.loadMore();
   },
   methods: {
-    ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setFavorites']),
+    ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites']),
     add (index) {
       this.favorites = JSON.parse(localStorage.getItem('favorites'));
       this.favorites.push(index + 1)
-      this.$store.commit("setListFavorites", index)
+      this.setListFavorites(index)
     },
     loadMore () {
       this.loading = true;
@@ -75,12 +70,13 @@ export default {
       }, 300);
     },
 		async getPokemon () {
-      const request = await this.$axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=${this.limit}`)
+      const request = await this.$axios.get(`?limit=${this.limit}`)
       if (request.status == 200) this.setPokemons(request.data.results)      
     },
 		async getInfo(index) {
       this.setModal(true)
-      const request = await this.$axios.get(`https://pokeapi.co/api/v2/pokemon/${index+1}`)
+      console.log(index)
+      const request = await this.$axios.get(`${index+1}`)
       if (request.status == 200) this.setPokemon(request.data)
 		}
 	}
