@@ -1,11 +1,11 @@
 <template>
   <div class="navigator">
     <div class="align-buttons">
-      <button class="button" @click="setNavigation(false)">
+      <button class="button" :class="[navigation ? '': 'favorites']" @click="setNavigation(false)">
         <img class="icon-align" src="./../assets/img/all.png" alt="" />
         All
       </button>
-      <button class="button favorites" @click="setNavigation(true)">
+      <button class="button" :class="[navigation ? 'favorites': '']" @click="setNavigation(true)">
 				<img class="icon-align" src="./../assets/img/favorite.png" alt="">
         Favorites
       </button>
@@ -14,11 +14,14 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 export default {
 	methods: {
     ...mapMutations(['setNavigation']),
-	},
+  },
+  computed: {
+    ...mapGetters(['navigation'])
+  },
 }
 </script>
 

@@ -1,63 +1,61 @@
 .modal-vue .overlay {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-  }
-.modal {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-vue .modal {
+  position: relative;
+  width: 570px;
+  height: 506px;
+  z-index: 9999;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.modal-vue .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  cursor: pointer;
+}
+.pokemon {
+  position: absolute;
+  width: 150px;
+  margin-top: 20px;
+}
+.container-pokemon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.back {
+  width: inherit;
   position: absolute;
 }
-  .modal-vue .modal {
-    position: relative;
-    width: 570px;
-    height: 506px;
-    z-index: 9999;
-    margin: 0 auto;
-    background-color: #fff;
-  }
-  
-  .modal-vue .close{
-    position: absolute;
-    top: 10px;
-      right: 10px;
-      z-index: 2;
-      cursor: pointer;
-  }
-  .pokemon {
-      position: absolute;
-          width: 150px;
-          margin-top: 20px;
-  }
-  .container-pokemon {
-      width: 100%;
-      display: flex;
-          justify-content: center;
-  }
-  .back {
-      width: inherit; 
-      position: absolute
-  }
-  .characters {
-    margin-top: 220px;
-    padding-left: 30px;
-    margin-bottom: 10px;
-  }
-  .border {
-    border-bottom: 1px solid #E8E8E8;
-    padding-bottom: 20px;
-  }
-  .container-share {
-    display: flex;
-    justify-content: space-between;
-  }
-  .share {
-    margin-bottom:0px;
-    margin-left: 20px;
-  }
-  .star-share {
-    margin-right: 20px;
-    margin-top: 20px
-  }
+.characters {
+  margin-top: 220px;
+  padding-left: 30px;
+  margin-bottom: 10px;
+}
+.border {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 20px;
+}
+.container-share {
+  display: flex;
+  justify-content: space-between;
+}
+.share {
+  margin-bottom: 0px;
+  margin-left: 20px;
+}
+.star-share {
+  margin-right: 20px;
+  margin-top: 20px;
+}

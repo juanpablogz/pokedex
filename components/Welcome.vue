@@ -29,7 +29,7 @@ export default {
   this.setGoToApp(false)
   let favorites = JSON.parse(localStorage.getItem('favorites'));
   if (favorites == null) {
-    localStorage.setItem('favorites',JSON.stringify([99]))
+    localStorage.setItem('favorites',JSON.stringify([]))
   }
   }
 }
