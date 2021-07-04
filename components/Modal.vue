@@ -34,9 +34,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import utils from '@/mixins/utils'
 export default {
-	  mixins: [utils],  
 	data () {
 		return {
 			showModal: true

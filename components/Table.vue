@@ -6,12 +6,12 @@
         <img class="image-loading" src="./../assets/img/loader.png" alt="" >
       </div>
     </transition>
-	<!-- {{search}} -->
+	{{search}}
   <div class="align-table" id="infinite-list" v-if="search">
     <div v-for="(pokemon, index) in pokemonOne" v-bind:key="pokemon.id" class="list-group-item">
       <div class="align-pokemones" v-show="pokemon.name != null" :class="[favorites.indexOf(index+1) == -1 && favoritePokemon != true ? 'filter': '']">
         <p class="min" @click="getInfo(pokemonOne.id)">{{pokemon.name}}</p>
-				<!-- {{pokemonOne.id}} -->
+				{{pokemonOne.id}}
         <div :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
       </div>
     </div>
@@ -85,14 +85,9 @@ export default {
 		async getInfo(index) {
       this.setModal(true)
 			console.log(index)
-			const requestOnly = await this.$axios.get(`${index}`)
       const request = await this.$axios.get(`${index+1}`)
       console.log(request)
-      if (request.status == 200 && this.search) {
-				this.setPokemon(requestOnly.data)
-			} else {
-				this.setPokemon(request.data)
-			}
+      if (request.status == 200) this.setPokemon(request.data)
 		}
 	}
 }

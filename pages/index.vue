@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div v-if="enter" >
+	<div v-if="goToApp" >
 		<Search/>
 		<Pokemons/>
 		<Navigator/>
@@ -10,14 +10,10 @@
 </template>
 
 <script>
-import utils from '@/mixins/utils'
+import { mapGetters } from 'vuex';
 export default {
-  mixins: [utils],
-	data () {
-		return {
-		}
-	},
-	methods: {
+	computed: {
+    ...mapGetters(['goToApp'])
 	},
 }
 </script>

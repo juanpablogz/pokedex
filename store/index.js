@@ -5,7 +5,7 @@ export const state = () => ({
   navigation: false,
   modal: false,
   listFavorites: [],
-  enter: false,
+  goToApp: false,
   error: false
 })
 
@@ -31,8 +31,8 @@ export const mutations = {
   setNavigation (state, navigation) {
     state.navigation = navigation
   },
-  updateEnter (state, opened) {
-    state.enter = opened
+  setGoToApp (state, opened) {
+    state.goToApp = opened
   },
   // updateError (state, opened) {
   //   state.error = opened
@@ -69,5 +69,8 @@ export const getters = {
   },
   navigation(state) {
     return state.navigation
+  },
+  goToApp (state) {
+    return state.goToApp
   }
 }

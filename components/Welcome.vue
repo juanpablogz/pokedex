@@ -8,11 +8,12 @@
         <p class="pr">{{paragraph}}</p>
       </div>
       <div class="align-index">
-          <button class="align-index button" @click="goToApp">{{go}}</button>
+          <button class="align-index button" @click="setGoToApp(true)">{{go}}</button>
       </div>
   </div>
 </template>
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 export default {
   data () {
     return {
@@ -22,12 +23,10 @@ export default {
     }
   },
   methods: {
-    goToApp () {
-      this.$store.commit("updateEnter", true);
-    }
+      ...mapMutations(['setGoToApp']),
   },
   mounted () {
-  this.$store.commit("updateEnter", false);
+  this.setGoToApp(false)
   let favorites = JSON.parse(localStorage.getItem('favorites'));
   if (favorites == null) {
     localStorage.setItem('favorites',JSON.stringify([99]))
