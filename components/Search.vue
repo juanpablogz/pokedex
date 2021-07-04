@@ -8,7 +8,7 @@
 			</i>
 		</div>
 	</div>
-		<Error v-show="error"/>
+		<Error v-show="error || home" :home="home"/>
 </div>
 </template>
 
@@ -17,33 +17,40 @@ import { mapGetters, mapMutations } from 'vuex';
 export default {
 	data () {
 		return {
-			textSearch: '',
-			pokemones: '',
-			errorSearch: false,
 		}
 	},
 	methods: {
-    ...mapMutations(['setPokemon','setSearch', 'setError', 'setValidationRequest']),
+    ...mapMutations(['setPokemon','setSearch', 'setError', 'setLoading', 'setHome']),
 		 async getPokemon () {
 			this.setSearch(true)
 			if (this.textSearch.length > 0) {
+				this.setLoading(true)
 				try {
 					const response = await this.$axios.get(`${this.textSearch.toLowerCase()}`)
-					console.log(response.data.id)
 					this.setPokemon(response.data)
-					this.setValidationRequest(true)
+					this.setLoading(false)
+					this.setHome(true)
 				} catch (err) {
 					this.setError(true)
+					this.setLoading(false)
 					this.setPokemon([])
-					this.setValidationRequest(false)
 				}
 			}	else {
 				this.setError(true)
+				
 			}		
 		},
 	},
   computed: {
-    ...mapGetters(['error', 'search'])
+		...mapGetters(['error', 'search', 'home']),
+		textSearch: {
+			get () {
+				return this.$store.state.textSearch
+			},
+			set (value) {
+				this.$store.commit('setTextSearch', value)
+			}
+  }
   },
 }
 </script>

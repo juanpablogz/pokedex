@@ -9,6 +9,8 @@ export const state = () => ({
   error: false,
   validationRequest: false,
   loading: false,
+  home: false,
+  textSearch: '',
 })
 
 export const mutations = {
@@ -45,6 +47,12 @@ export const mutations = {
   setLoading (state, loading) {
     state.loading = loading
   },
+  setHome (state, home) {
+    state.home = home
+  },
+  setTextSearch (state, search) {
+    state.textSearch = search
+  },
   setListFavorites (state, add) {
     Array.prototype.unique=function(a){
       return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
@@ -54,7 +62,7 @@ export const mutations = {
     if (favorites != null) {
       state.listFavorites = favorites
     }
-    state.listFavorites.push(add + 1)
+    state.listFavorites.push(add)
     localStorage.setItem('favorites',JSON.stringify(state.listFavorites.unique()))
   }
 }
@@ -83,5 +91,11 @@ export const getters = {
   },
   loading (state) {
     return state.loading
+  },
+  home (state) {
+    return state.home
+  },
+  textSearch () {
+    return state.textSearch
   }
 }

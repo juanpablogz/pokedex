@@ -7,11 +7,12 @@
       </div>
     </transition>
     <div class="align-table" id="infinite-list">
+      <!-- {{favorites}} -->
       <div v-for="(pokemon, index) in items" :key="pokemon.id" class="list-group-item">
         <div class="align-pokemones" v-show="pokemon.name != null" :class="[favorites.indexOf(index+1) == -1 && navigation == 'favorites' && !search ? 'filter': '']" >
           <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
-          <div v-if="search" :class="[favorites.indexOf(items.id) == -1 ? 'star': 'star1']" @click="add(index)"></div>
-          <div v-else :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+          <div v-if="search" :class="[favorites.indexOf(items.id) == -1 ? 'star': 'star1']" @click="changeFavorite(index)"></div>
+          <div v-else :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="changeFavorite(index+1)"></div>
         </div>
       </div>
     </div>
@@ -50,15 +51,19 @@ export default {
   },
   methods: {
     ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites', 'setLoading']),
-    add (index) {
+    changeFavorite (index) {
       this.favorites = JSON.parse(localStorage.getItem('favorites'));
-      let value = index+1
-      if (this.search) {
-        value = this.items.id
+      if (this.search) {index = this.items.id}
+      // console.log(this.favorites.indexOf(index))
+      if (this.favorites.indexOf(index) == -1) {
+        this.favorites.push(index)
+        this.setListFavorites(index)
+      } else {
+        this.favorites.splice(index - 1, 1)
+        console.log(index -1 )
+        localStorage.setItem('favorites',JSON.stringify(this.favorites))
+        // this.favorites = JSON.parse(localStorage.getItem('favorites'));
       }
-      console.log(value)
-      this.favorites.push(value)
-      this.setListFavorites(value)
     },
 		async getPokemon () {
       this.limit = this.limit + 100        
@@ -71,9 +76,7 @@ export default {
       this.setModal(true)
       console.log(index)
       let value = index+1
-      if (this.search) {
-        value = this.items.id
-      }
+      if (this.search) value = this.items.id
       const request = await this.$axios.get(`${value}`)
       console.log(request)
       if (request.status == 200) this.setPokemon(request.data)

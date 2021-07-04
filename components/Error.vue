@@ -1,7 +1,7 @@
 <template>
-  <div class="error setError">
-			<h2>Uh-Oh!</h2>
-			<p>You look lost on your journey!</p>
+  <div class="error setError" :class="home ? 'home': ''">
+			<h2 v-show="!home">Uh-Oh!</h2>
+			<p v-show="!home">You look lost on your journey!</p>
     <button class="button" @click="returnIndex()">Go back home</button>
   </div>
 </template>
@@ -20,7 +20,8 @@ export default {
       "search",
 			"error",
 			"navigation",
-			"validationRequest"
+      "validationRequest",
+      "home"
     ])
   },
   methods: {
@@ -28,7 +29,9 @@ export default {
       "setPokemons",
       "setError",
 			"setSearch",
-			"setValidationRequest"
+      "setValidationRequest",
+      "setHome",
+      "setTextSearch"
     ]),
     async returnIndex() {
       const request = await this.$axios.get(`?limit=${this.limit}`);
@@ -36,6 +39,8 @@ export default {
         this.setPokemons(request.data.results);
         this.setError(false);
         this.setSearch(false);
+        this.setHome(false)
+        this.setTextSearch('')
       }
     }
   }
@@ -44,6 +49,9 @@ export default {
 <style>
 .setError {
 	position: absolute;
-	width: 100%
+  width: 100%;
+}
+.home {
+  margin-top: 100px;
 }
 </style>
