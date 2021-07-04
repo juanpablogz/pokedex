@@ -8,32 +8,40 @@
 			</i>
 		</div>
 	</div>
-		<!-- <div class="error">
-			<button class="button">Go back home</button>
-		</div> -->
 		<Error v-show="error"/>
 </div>
 </template>
 
 <script>
-import utils from '@/mixins/utils'
+import { mapGetters, mapMutations } from 'vuex';
 export default {
-  mixins: [utils],
 	data () {
 		return {
 			pokemonSearch: '',
 			pokemones: '',
-			errorSearch: false
+			errorSearch: false,
 		}
 	},
 	methods: {
-		getPokemon () {
-		this.changeState(true)
+		...mapMutations(['setSearch', 'setError', 'setPokemons']),
+		 getPokemon () {
+		this.setSearch(true)
       this.$axios
         .get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch.toLowerCase()}`)
-        .then(response => (this.$store.commit("pokemon/updateError", false), this.$store.commit("pokemon/updateFind", response.data)))
-        .catch (err => console.log(err), this.$store.commit("pokemon/updateError", true))
+        .then(response => ( this.$store.commit("setPokemons", response.data)))
+				.catch (err => console.log(err))
+				
+      // const request = await this.$axios.get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonSearch.toLowerCase()}`)
+      // if (request.status == 200) {
+			// 	this.setPokemons(request.data.results)
+			// 	this.setError(false)
+			// } else {
+			// 	this.setError(true)
+			// }
 		},
 	},
+  computed: {
+    ...mapGetters(['pokemons', 'pokemonOne', 'error'])
+  },
 }
 </script>

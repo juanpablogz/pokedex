@@ -18,7 +18,7 @@ export default {
 	},
 	methods: {
     back () {
-      this.$store.commit("pokemon/updateError", false)
+      this.$store.commit("updateError", false)
     }
 	},
 }

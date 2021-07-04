@@ -1,11 +1,11 @@
 <template>
   <div class="navigator">
     <div class="align-buttons">
-      <button class="button" @click="updateButttonFavorites(false)">
+      <button class="button" @click="setNavigation(false)">
         <img class="icon-align" src="./../assets/img/all.png" alt="" />
         All
       </button>
-      <button class="button favorites" @click="updateButttonFavorites(true)">
+      <button class="button favorites" @click="setNavigation(true)">
 				<img class="icon-align" src="./../assets/img/favorite.png" alt="">
         Favorites
       </button>
@@ -14,35 +14,15 @@
 </template>
 
 <script>
-import utils from '@/mixins/utils'
+import { mapMutations } from 'vuex';
 export default {
-  mixins: [utils],
-	data () {
-		return {
-		}
-	},
-  mounted () {
-	},
 	methods: {
+    ...mapMutations(['setNavigation']),
 	},
-  computed: {
-  },
 }
 </script>
 
 <style scoped>
-.navigator {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  height: 10vh;
-}
-.align-buttons {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 10px;
-  box-shadow: 0px -5px 4px rgba(0, 0, 0, 0.05);
-}
 .button {
   background: #bfbfbf;
   border: none;
@@ -59,8 +39,5 @@ export default {
 }
 .favorites {
 	background: #f22539;
-}
-.icon-align {
-	margin-right: 13px;
 }
 </style>

@@ -23,11 +23,11 @@ export default {
   },
   methods: {
     goToApp () {
-      this.$store.commit("pokemon/updateEnter", true);
+      this.$store.commit("updateEnter", true);
     }
   },
   mounted () {
-  this.$store.commit("pokemon/updateEnter", false);
+  this.$store.commit("updateEnter", false);
   let favorites = JSON.parse(localStorage.getItem('favorites'));
   if (favorites == null) {
     localStorage.setItem('favorites',JSON.stringify([99]))

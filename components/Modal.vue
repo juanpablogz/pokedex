@@ -2,24 +2,24 @@
 <template>
 <div id="app" class="modal-vue">
 
-  <div class="overlay" v-if="modal" @click="changeModal(false)"></div>
+  <div class="overlay" v-if="modal" @click="setModal(false)"></div>
 	<!-- {{modal}} -->
   <div class="modal" v-if="modal">
-    <div class="close" @click="changeModal(false)">
+    <div class="close" @click="setModal(false)">
 			<img src="./../assets/img/close.png" alt="">
 		</div>
     <img src="./../assets/img/back.png" alt="" class="back">
 		<div class="container-pokemon">
-			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" alt="" class="pokemon">
+			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonOne.id}.png`" alt="" class="pokemon">
 		</div>
 		<!-- {{pokemones}} -->
 		<div class="characters">
-			<p class="border"><strong>Name: </strong>{{pokemon.name}}</p>
+			<p class="border"><strong>Name: </strong>{{pokemonOne.name}}</p>
 						<!-- {{pokemon.id}} -->
-			<p class="border"><strong>Weight: </strong>{{pokemon.weight}}</p>
-			<p class="border"><strong>height: </strong>{{pokemon.height}}</p>
+			<p class="border"><strong>Weight: </strong>{{pokemonOne.weight}}</p>
+			<p class="border"><strong>height: </strong>{{pokemonOne.height}}</p>
 			<div style="display: flex">
-				<div v-for="type in pokemon.types" v-bind:key="type.id">
+				<div v-for="type in pokemonOne.types" v-bind:key="type.id">
 				 Types: {{type.type.name }}  {{','}}
 				</div>
 			</div>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 import utils from '@/mixins/utils'
 export default {
 	  mixins: [utils],  
@@ -43,8 +44,9 @@ export default {
 		}
 	},
 	methods: {
+    ...mapMutations(['setModal']),
 		async copy() {
-			let copy = `${this.pokemon.name}, ${this.pokemon.weight}, ${this.pokemon.height}`
+			let copy = `${this.pokemonOne.name}, ${this.pokemonOne.weight}, ${this.pokemonOne.height}`
 				try {
 						await this.$copyText(copy);
 						this.$swal({
@@ -60,6 +62,7 @@ export default {
 		},
 	},
   computed: {
+    ...mapGetters(['modal', 'pokemonOne']),
     pokemon() {
 	  return this.$store.state.pokemon.pokemon;
 		},

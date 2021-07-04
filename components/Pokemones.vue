@@ -7,24 +7,24 @@
         <img class="image-loading" src="./../assets/img/loader.png" alt="" >
       </div>
     </transition>
-
   <Modal v-show="modal"/>
-		<div  class="align-table" id="infinite-list" v-if="button != true && error == false" >
-			<div v-for="(pokemon, index) in findPokemon" v-bind:key="pokemon.id" class="list-group-item">
-				<div class="align-pokemones" v-show="pokemon.name != null">
-					<p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
-          <div v-bind:class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
-				</div>
-			</div>
-		</div>
-		<div  class="align-table" id="infinite-list" v-if="button && error == false" >
-			<div v-for="(pokemon, index) in findPokemon" v-bind:key="pokemon.id" class="list-group-item">
-				<div class="align-pokemones" v-bind:class="[favorites.indexOf(index+1) == -1 ? 'filter': '']" >
-					<p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
-          <div v-bind:class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
-				</div>
-			</div>
-		</div>
+  <div  class="align-table" id="infinite-list" v-if="navigation != true && error == false" >
+    <div v-for="(pokemon, index) in pokemons" v-bind:key="pokemon.id" class="list-group-item">
+      <div class="align-pokemones" v-show="pokemon.name != null">
+        <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
+        <div v-bind:class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+      </div>
+    </div>
+  </div>
+  <div  class="align-table" id="infinite-list" v-if="navigation && error == false" >
+    <div v-for="(pokemon, index) in pokemons" v-bind:key="pokemon.id" class="list-group-item">
+      <div class="align-pokemones" v-bind:class="[favorites.indexOf(index+1) == -1 ? 'filter': '']" >
+        <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
+        <div v-bind:class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+      </div>
+    </div>
+  </div>
+
   </div>
 </div>
 
@@ -33,8 +33,12 @@
 
 <script>
 import utils from '@/mixins/utils'
+import { mapGetters, mapMutations } from 'vuex';
 export default {
   mixins: [utils],
+  computed: {
+    ...mapGetters(['pokemons', 'pokemonOne', 'navigation'])
+  },
 	data () {
 		return {
     loading: false,
@@ -56,37 +60,30 @@ export default {
     this.loadMore();
   },
   methods: {
+    ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setFavorites']),
     add (index) {
       this.favorites = JSON.parse(localStorage.getItem('favorites'));
       this.favorites.push(index + 1)
-      this.$store.commit("pokemon/updateListFavorites", index)
+      this.$store.commit("setListFavorites", index)
     },
     loadMore () {
       this.loading = true;
       setTimeout(e => {
         this.limit = this.limit + 100
-        console.log(this.limit)
         this.loading = false;
         this.getPokemon()
       }, 300);
-  },
-		getPokemon () {
-    this.$axios
-      .get(`https://pokeapi.co/api/v2/pokemon/?limit=${this.limit}`)
-      .then(response => (this.pokemones = response.data.results,
-      this.$store.commit("pokemon/updateFind", response.data.results)))
     },
-		getInfo(index) {
-			console.log(index)
-      this.details = index
-      this.changeModal(true)
-      this.$axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${index+1}`)
-        .then(response => (this.$store.commit("pokemon/updatePokemon", response.data)))
-        .catch (err => console.log(err))
+		async getPokemon () {
+      const request = await this.$axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=${this.limit}`)
+      if (request.status == 200) this.setPokemons(request.data.results)      
+    },
+		async getInfo(index) {
+      this.setModal(true)
+      const request = await this.$axios.get(`https://pokeapi.co/api/v2/pokemon/${index+1}`)
+      if (request.status == 200) this.setPokemon(request.data)
 		}
-	},
-
+	}
 }
 </script>
 
