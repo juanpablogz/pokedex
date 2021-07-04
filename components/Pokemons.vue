@@ -1,22 +1,21 @@
 <template>
 <div>
-  <Modal v-show="modal" style=""/>
-  <Table :items="pokemons" v-if="navigation"/>
-  <Table :items="pokemons" :favoritePokemon="true" v-if="navigation != true"/>
+	<Table :items="pokemons" v-if="navigation"/>
+	<Table :items="pokemons" :favoritePokemon="true" v-if="navigation != true"/>
 </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 export default {
-  computed: {
-    ...mapGetters(['pokemons', 'navigation', 'modal'])
-  },
+	computed: {
+		...mapGetters(['pokemons', 'navigation', 'modal'])
+	},
 }
 </script>
 
 <style>
 .filter {
-  display: none;
+	display: none;
 }
 </style>

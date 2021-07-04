@@ -26,36 +26,3 @@ input {
 		left: 10px;
 		top: -42px;
 }
-
-
-@media (min-width: 360px) { 
-	input {
-			width: 315px;
-			height: 50px;
-			margin-top: 35px;
-	}
-	.container {
-		margin-bottom: 50px;
-	}
- }
-@media (min-width: 576px) { }
-
-@media (min-width: 768px) {  }
-
-@media (min-width: 992px) {  }
-
-@media (min-width: 1200px) { 
-	input {
-			width: 570px;
-			height: 50px;
-			margin-top: 35px;
-	}
-	.search {
-			position: relative;
-			left: 10px;
-			top: -42px;
-	}
-	.container {
-		margin-bottom: 0px;
-	}
- }

@@ -22,10 +22,9 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="container-share">
       <button class="button share" @click="copy()">Share to my friends</button>
-			<img class="star star-share" src="./../assets/img/star.png" alt="">
+			<div class="align-star-modal" :class="[favorites.indexOf(pokemonOne.id+1) == -1 ? 'star': 'star1']"></div>
 		</div>
   </div>
 
@@ -35,6 +34,12 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 export default {
+  props: {
+    favorites: {
+      type: Array,
+      default: () => []
+    },
+  },
 	data () {
 		return {
 			showModal: true

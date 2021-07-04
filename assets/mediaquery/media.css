@@ -33,8 +33,20 @@
     max-width: 40px;
   }
   .star-share {
-    margin-right: 20px;
-    margin-top: 10px;
+    margin-right: 12px;
+    margin-top: 7px;
+  }
+  input {
+    width: 315px;
+    height: 50px;
+    margin-top: 35px;
+  }
+  .container {
+    margin-bottom: 50px;
+  }
+  .align-star-modal {
+    margin-right: 17px;
+    margin-top: 8px;
   }
 }
 @media (min-width: 576px) {
@@ -93,6 +105,23 @@
   }
   .star-share {
     margin-right: 20px;
+    margin-top: 20px;
+  }
+  input {
+    width: 570px;
+    height: 50px;
+    margin-top: 35px;
+  }
+  .search {
+    position: relative;
+    left: 10px;
+    top: -42px;
+  }
+  .container {
+    margin-bottom: 0px;
+  }
+  .align-star-modal {
+    margin-right: 30px;
     margin-top: 20px;
   }
 }
