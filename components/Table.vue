@@ -11,8 +11,8 @@
       <div v-for="(pokemon, index) in items" :key="pokemon.id" class="list-group-item">
         <div class="align-pokemones" v-show="pokemon.name != null" :class="[favorites.indexOf(index+1) == -1 && navigation == 'favorites' && !search ? 'filter': '']" >
           <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
-          <div v-if="search" :class="[favorites.indexOf(items.id) == -1 ? 'star': 'star1']" @click="changeFavorite(index)"></div>
-          <div v-else :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="changeFavorite(index+1)"></div>
+          <div v-if="search" :class="[favorites.indexOf(items.id) == -1 ? 'star': 'star1']" @click="add(index)" @dblclick="remove(index)"></div>
+          <div v-else :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index+1)" @dblclick="remove(index+1)"></div>
         </div>
       </div>
     </div>
@@ -51,19 +51,19 @@ export default {
   },
   methods: {
     ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites', 'setLoading']),
-    changeFavorite (index) {
+    add (index) {
       this.favorites = JSON.parse(localStorage.getItem('favorites'));
-      if (this.search) {index = this.items.id}
-      // console.log(this.favorites.indexOf(index))
-      if (this.favorites.indexOf(index) == -1) {
+      if (this.search) index = this.items.id
         this.favorites.push(index)
         this.setListFavorites(index)
-      } else {
-        this.favorites.splice(index - 1, 1)
-        console.log(index -1 )
-        localStorage.setItem('favorites',JSON.stringify(this.favorites))
-        // this.favorites = JSON.parse(localStorage.getItem('favorites'));
-      }
+    },
+    remove (index) {
+      this.favorites = JSON.parse(localStorage.getItem('favorites'));
+      let position = this.favorites.indexOf(index)
+      let copy = this.favorites
+      copy.splice(position, 1)
+      localStorage.setItem('favorites',JSON.stringify(this.favorites))
+      this.favorites = JSON.parse(localStorage.getItem('favorites'));
     },
 		async getPokemon () {
       this.limit = this.limit + 100        
@@ -88,8 +88,5 @@ export default {
 <style>
 .filter {
   display: none;
-}
-.nofilter {
-  display: block
 }
 </style>

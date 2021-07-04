@@ -17,8 +17,9 @@
 			<p class="border"><strong>Weight: </strong>{{pokemonsFound.weight}}</p>
 			<p class="border"><strong>height: </strong>{{pokemonsFound.height}}</p>
 			<div style="display: flex">
+				Types: 
 				<div v-for="type in pokemonsFound.types" v-bind:key="type.id">
-				 Types: {{type.type.name }}  {{','}}
+				  {{' ' + type.type.name }}  {{','}}
 				</div>
 			</div>
 		</div>
@@ -55,7 +56,7 @@ export default {
 						this.$swal({
 							position: 'top-end',
 							icon: 'success',
-							title: 'Your work has been saved',
+							title: 'your pokemon has been copied',
 							showConfirmButton: false,
 							timer: 1500
 						})
