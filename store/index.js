@@ -2,11 +2,13 @@ export const state = () => ({
   pokemons: [],
   pokemon: [],
   isSearch: false,
-  navigation: false,
+  navigation: 'all',
   modal: false,
   listFavorites: [],
   goToApp: false,
-  error: false
+  error: false,
+  validationRequest: false,
+  loading: false,
 })
 
 export const mutations = {
@@ -34,9 +36,15 @@ export const mutations = {
   setGoToApp (state, opened) {
     state.goToApp = opened
   },
-  // updateError (state, opened) {
-  //   state.error = opened
-  // },
+  setError (state, error) {
+    state.error = error
+  },
+  setValidationRequest (state, validationRequest) {
+    state.validationRequest = validationRequest
+  },
+  setLoading (state, loading) {
+    state.loading = loading
+  },
   setListFavorites (state, add) {
     Array.prototype.unique=function(a){
       return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
@@ -48,14 +56,14 @@ export const mutations = {
     }
     state.listFavorites.push(add + 1)
     localStorage.setItem('favorites',JSON.stringify(state.listFavorites.unique()))
-  }  
+  }
 }
 
 export const getters = {
   pokemons (state) {
     return state.pokemons
   },
-  pokemonOne (state) {
+  pokemonsFound (state) {
     return state.pokemon
   },
   modal (state) {
@@ -64,13 +72,16 @@ export const getters = {
   search (state) {
     return state.isSearch
   },
-  error (state) {
-    return state.error
-  },
   navigation(state) {
     return state.navigation
   },
   goToApp (state) {
     return state.goToApp
+  },
+  error (state) {
+    return state.error
+  },
+  loading (state) {
+    return state.loading
   }
 }

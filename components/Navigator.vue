@@ -1,11 +1,11 @@
 <template>
   <div class="navigator">
     <div class="align-buttons">
-      <button class="button" :class="[navigation ? '': 'favorites']" @click="setNavigation(false)">
+      <button class="button" :class="navigation == 'all' ? 'current': '' " @click="setNavigation('all')">
         <img class="icon-align" src="./../assets/img/all.png" alt="" />
         All
       </button>
-      <button class="button" :class="[navigation ? 'favorites': '']" @click="setNavigation(true)">
+      <button class="button" :class="navigation == 'favorites' ? 'current': ''" @click="setNavigation('favorites')">
 				<img class="icon-align" src="./../assets/img/favorite.png" alt="">
         Favorites
       </button>
@@ -40,7 +40,7 @@ export default {
   margin-right: 15px;
   margin-top: 20px;
 }
-.favorites {
+.current {
 	background: #f22539;
 }
 </style>

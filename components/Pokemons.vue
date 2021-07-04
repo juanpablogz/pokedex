@@ -1,7 +1,7 @@
 <template>
 <div>
-	<Table :items="pokemons" v-if="navigation"/>
-	<Table :items="pokemons" :favoritePokemon="true" v-if="navigation != true"/>
+	<Table :items="pokemonsFound" v-if="search"/>
+	<Table :items="pokemons" v-else/>
 </div>
 </template>
 
@@ -9,7 +9,7 @@
 import { mapGetters, mapMutations } from 'vuex';
 export default {
 	computed: {
-		...mapGetters(['pokemons', 'navigation', 'modal'])
+		...mapGetters(['pokemons', 'navigation', 'pokemonsFound', 'search'])
 	},
 }
 </script>

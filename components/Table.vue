@@ -6,26 +6,16 @@
         <img class="image-loading" src="./../assets/img/loader.png" alt="" >
       </div>
     </transition>
-	<!-- {{search}} -->
-  <div class="align-table" id="infinite-list" v-if="search">
-    <div v-for="(pokemon, index) in pokemonOne" v-bind:key="pokemon.id" class="list-group-item">
-      <div class="align-pokemones" v-show="pokemon.name != null" :class="[favorites.indexOf(index+1) == -1 && favoritePokemon != true ? 'filter': '']">
-        <p class="min" @click="getInfo(pokemonOne.id)">{{pokemon.name}}</p>
-				{{pokemonOne.id}}
-        <div :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+    <div class="align-table" id="infinite-list">
+      <div v-for="(pokemon, index) in items" :key="pokemon.id" class="list-group-item">
+        <div class="align-pokemones" v-show="pokemon.name != null" :class="[favorites.indexOf(index+1) == -1 && navigation == 'favorites' && !search ? 'filter': '']" >
+          <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
+          <div :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="align-table" id="infinite-list" v-else>
-    <div v-for="(pokemon, index) in items" v-bind:key="pokemon.id" class="list-group-item">
-      <div class="align-pokemones" v-show="pokemon.name != null" :class="[favorites.indexOf(index+1) == -1 && favoritePokemon != true ? 'filter': '']">
-        <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
-        <div :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
-      </div>
-    </div>
-  </div>
-  </div>
-    <Modal v-show="modal" style="position: absolute;" class="modal-position" :favorites="favorites"/>
+    <Modal v-show="modal" style="position: absolute;" :favorites="favorites"/>
 </div>
 </template>
 
@@ -34,20 +24,13 @@ import { mapGetters, mapMutations } from 'vuex';
 export default {
   props: {
     items: {
-      type: Array,
-      default: () => []
-    },
-    favoritePokemon: {
-      type: Boolean,
-      default: false
-    },
+    }
   },
   computed: {
-    ...mapGetters(['pokemons', 'pokemonOne', 'navigation', 'modal', 'search'])
+    ...mapGetters(['pokemons', 'pokemonsFound', 'navigation', 'modal', 'search', 'error', 'loading'])
   },
 	data () {
 		return {
-    loading: false,
     limit: 0,
     favorites: [0]
 		}
@@ -58,34 +41,34 @@ export default {
     if (listElm != null) {
       listElm.addEventListener('scroll', e => {
         if(listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
-          this.loadMore();
+          this.getPokemon();
         }
       });
     }
-    this.loadMore();
+    this.getPokemon();
   },
   methods: {
-    ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites']),
+    ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites', 'setLoading']),
     add (index) {
       this.favorites = JSON.parse(localStorage.getItem('favorites'));
       this.favorites.push(index + 1)
       this.setListFavorites(index)
     },
-    loadMore () {
-      this.loading = true;
-      setTimeout(e => {
-        this.limit = this.limit + 100
-        this.loading = false;
-        this.getPokemon()
-      }, 300);
-    },
 		async getPokemon () {
+      this.limit = this.limit + 100        
+      this.setLoading(true)
       const request = await this.$axios.get(`?limit=${this.limit}`)
-      if (request.status == 200) this.setPokemons(request.data.results)   
+      if (request.status == 200) this.setPokemons(request.data.results)
+      this.setLoading(false)
     },
 		async getInfo(index) {
       this.setModal(true)
-      const request = await this.$axios.get(`${index+1}`)
+      console.log(index)
+      let value = index+1
+      if (this.search) {
+        value = this.items.id
+      }
+      const request = await this.$axios.get(`${value}`)
       console.log(request)
       if (request.status == 200) this.setPokemon(request.data)
 		}
@@ -96,5 +79,8 @@ export default {
 <style>
 .filter {
   display: none;
+}
+.nofilter {
+  display: block
 }
 </style>

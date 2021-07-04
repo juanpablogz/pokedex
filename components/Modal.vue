@@ -9,22 +9,22 @@
 		</div>
     <img src="./../assets/img/back.png" alt="" class="back">
 		<div class="container-pokemon">
-			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonOne.id}.png`" alt="" class="pokemon">
+			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonsFound.id}.png`" alt="" class="pokemon">
 		</div>
 
 		<div class="characters">
-			<p class="border"><strong>Name: </strong>{{pokemonOne.name}}</p>
-			<p class="border"><strong>Weight: </strong>{{pokemonOne.weight}}</p>
-			<p class="border"><strong>height: </strong>{{pokemonOne.height}}</p>
+			<p class="border"><strong>Name: </strong>{{pokemonsFound.name}}</p>
+			<p class="border"><strong>Weight: </strong>{{pokemonsFound.weight}}</p>
+			<p class="border"><strong>height: </strong>{{pokemonsFound.height}}</p>
 			<div style="display: flex">
-				<div v-for="type in pokemonOne.types" v-bind:key="type.id">
+				<div v-for="type in pokemonsFound.types" v-bind:key="type.id">
 				 Types: {{type.type.name }}  {{','}}
 				</div>
 			</div>
 		</div>
 		<div class="container-share">
       <button class="button share" @click="copy()">Share to my friends</button>
-			<div class="align-star-modal" :class="[favorites.indexOf(pokemonOne.id+1) == -1 ? 'star': 'star1']"></div>
+			<div class="align-star-modal" :class="[favorites.indexOf(pokemonsFound.id+1) == -1 ? 'star': 'star1']"></div>
 		</div>
   </div>
 
@@ -48,7 +48,7 @@ export default {
 	methods: {
     ...mapMutations(['setModal']),
 		async copy() {
-			let copy = `${this.pokemonOne.name}, ${this.pokemonOne.weight}, ${this.pokemonOne.height}`
+			let copy = `${this.pokemonsFound.name}, ${this.pokemonsFound.weight}, ${this.pokemonsFound.height}`
 				try {
 						await this.$copyText(copy);
 						this.$swal({
@@ -64,7 +64,7 @@ export default {
 		},
 	},
   computed: {
-    ...mapGetters(['modal', 'pokemonOne'])
+    ...mapGetters(['modal', 'pokemonsFound'])
   },
 }
 </script>
