@@ -15,6 +15,12 @@
           <div v-else :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index+1)" @dblclick="remove(index+1)"></div>
         </div>
       </div>
+      <div v-show="navigation == 'favorites' && favorites.length == 0">
+        <div class="error">
+            <h2>Uh-Oh!</h2>
+            <p>You need to add pokemon!</p>
+        </div>
+      </div>
     </div>
   </div>
     <Modal v-show="modal" style="position: absolute;" :favorites="favorites"/>
