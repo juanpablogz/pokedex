@@ -10,7 +10,8 @@
       <div v-for="(pokemon, index) in items" :key="pokemon.id" class="list-group-item">
         <div class="align-pokemones" v-show="pokemon.name != null" :class="[favorites.indexOf(index+1) == -1 && navigation == 'favorites' && !search ? 'filter': '']" >
           <p class="min" @click="getInfo(index)">{{pokemon.name}}</p>
-          <div :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+          <div v-if="search" :class="[favorites.indexOf(items.id) == -1 ? 'star': 'star1']" @click="add(index)"></div>
+          <div v-else :class="[favorites.indexOf(index+1) == -1 ? 'star': 'star1']" @click="add(index)"></div>
         </div>
       </div>
     </div>
@@ -51,8 +52,13 @@ export default {
     ...mapMutations(['setPokemons', 'setPokemon', 'setModal', 'setListFavorites', 'setLoading']),
     add (index) {
       this.favorites = JSON.parse(localStorage.getItem('favorites'));
-      this.favorites.push(index + 1)
-      this.setListFavorites(index)
+      let value = index+1
+      if (this.search) {
+        value = this.items.id
+      }
+      console.log(value)
+      this.favorites.push(value)
+      this.setListFavorites(value)
     },
 		async getPokemon () {
       this.limit = this.limit + 100        

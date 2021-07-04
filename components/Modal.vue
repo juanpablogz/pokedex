@@ -24,7 +24,8 @@
 		</div>
 		<div class="container-share">
       <button class="button share" @click="copy()">Share to my friends</button>
-			<div class="align-star-modal" :class="[favorites.indexOf(pokemonsFound.id+1) == -1 ? 'star': 'star1']"></div>
+			<div v-if="search" class="align-star-modal" :class="[favorites.indexOf(pokemonsFound.id) == -1 ? 'star': 'star1']"></div>
+			<div v-else class="align-star-modal" :class="[favorites.indexOf(pokemonsFound.id) == -1 ? 'star': 'star1']"></div>
 		</div>
   </div>
 
@@ -64,7 +65,7 @@ export default {
 		},
 	},
   computed: {
-    ...mapGetters(['modal', 'pokemonsFound'])
+    ...mapGetters(['modal', 'pokemonsFound', 'search'])
   },
 }
 </script>
