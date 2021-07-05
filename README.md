@@ -16,5 +16,8 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
-escogi nuxt para realizar la pokedex porque le añade unos agregas muy potentes a vue al momento de querer escalar un proyecto, podemos tener una PWA con poca configuracion, convertir nuestro proyecto en un SSR, ser amigables con el seo entre otras, en los estilos decidi hacerlos con css sin ningun framework, decidi usar vuex para almacenar los datos ya que si se llegase a tener un gran flujo de datos, esta es una de las formas mas optimas de hacerlo, para persistir la informacion lo hice en el localstorage
+# Nuxt 
+# Css
+# Vuex
+# localStorage
+Realice el proyecto con estas tecnologias, nuxt nos ofrece grandes bondades como tener una PWA, SSR, con nuxt no tenemos que reinventar la rueda, VUEX nos permite centralizar la información y tenerla disponible para todos nuestros componentes y compartirla entre ellos es una herramienta bastante poderosa, y no podia faltar el css, escogí css sin ningún tipo de framework por qué no lo vi necesario, pero de tener la necesidad de un framework para los estilos hubiese escogido tailwind, y por ultimo persisti los datos en el localstorage, una forma muy util y sencilla de guardar nuestros datos
